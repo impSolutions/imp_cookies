@@ -1,4 +1,4 @@
-impSolutions - PrestaShop Modules
+imp_cookies PrestaShop module by impSolutions
 ======
 ![impSolutions](http://www.impsolutions.pl/impsolutions.png "impSolutions")
 
