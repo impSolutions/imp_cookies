@@ -16,7 +16,7 @@ You can download module [here][1]
 LICENSE
 --------
 
-Copyright 2013 impSolutions - Krystian Podemski and other contributors
+Copyright 2013 - impSolutions - Krystian Podemski and other contributors
 http://jquery.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
