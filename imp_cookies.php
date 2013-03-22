@@ -2,7 +2,7 @@
 /**
 	@author: Krystian Podemski, impSolutions.pl
 	@release: 03.2013
-	@version: 1.0.1
+	@version: 1.1.0
 	@desc: UE cookies restrictions? No problem now
 **/
 if (!defined('_PS_VERSION_'))
@@ -14,9 +14,15 @@ class imp_cookies extends Module
 	public function __construct()
 	{
 		$this->name = 'imp_cookies';
-		$this->tab = 'front_office_features';
-		$this->version = '1.0.1';
-		$this->author = 'impSolutions.pl';
+		if (version_compare(_PS_VERSION_, '1.4', '>'))
+			$this->tab = 'front_office_features';
+		else
+			$this->tab = 'impSolutions';
+
+		$this->version = '1.1.0';
+
+		if (version_compare(_PS_VERSION_, '1.4', '>'))
+			$this->author = 'impSolutions.pl';
 
 		parent::__construct();
 
@@ -58,7 +64,11 @@ class imp_cookies extends Module
 				'color' => Configuration::get('COOKIE_LAW_TEXT_COLOR'),
 			));
 
-		return $this->display(__FILE__,'imp_cookies.tpl');
+
+		if (version_compare(_PS_VERSION_, '1.4', '<')) 
+			return $this->display(__FILE__,'imp_cookies-older.tpl');
+		else
+			return $this->display(__FILE__,'imp_cookies.tpl');
 	}
 
 	public function hookHeader()
@@ -68,11 +78,12 @@ class imp_cookies extends Module
 			$this->context->controller->addCSS(($this->_path).'imp_cookies.css', 'all');
 			$this->context->controller->addJS(($this->_path).'imp_cookies.js');
 		}
-		else
+		elseif(version_compare(_PS_VERSION_, '1.4', '>'))
 		{
 			Tools::addCSS(($this->_path).'imp_cookies.css', 'all');
 			Tools::addJs(($this->_path).'imp_cookies.js');
 		}
+		else return;
 	}
       
     public function getContent()
