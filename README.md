@@ -6,6 +6,9 @@ WHY?
 --------
 EU regulation regarding the cookie directive forces you to seek approval of the user in case you use cookies on your website. 
 
+CONTRIBUTORS
+--------
+Thank`s to @mario and @deejay3 from prestashopforum.pl
 
 DOWNLOAD
 --------

@@ -19,7 +19,7 @@ class imp_cookies extends Module
 		else
 			$this->tab = 'impSolutions';
 
-		$this->version = '1.1.0';
+		$this->version = '1.2.0';
 
 		if (version_compare(_PS_VERSION_, '1.4', '>'))
 			$this->author = 'impSolutions.pl';
@@ -55,7 +55,32 @@ class imp_cookies extends Module
 
 	public function hookTop()
 	{
-		global $smarty;
+		global $smarty, $cookie;
+
+		$bots = array(
+            'Googlebot',
+            'Baiduspider',
+            'ia_archiver',
+            'R6_FeedFetcher',
+            'NetcraftSurveyAgent',
+            'Sogou web spider',
+            'bingbot',
+            'Yahoo! Slurp',
+            'facebookexternalhit',
+            'PrintfulBot',
+            'msnbot',
+            'Twitterbot',
+            'UnwindFetchor',
+            'urlresolver',
+            'Butterfly',
+            'TweetmemeBot' );
+ 
+	    foreach($bots as $bot)
+	         if( stripos( $_SERVER['HTTP_USER_AGENT'], $bot ) !== false )
+	                return;
+                   
+        if($cookie->__isset('cookieAccepted'))
+             return;
 
 		$smarty->assign(
 			array(
@@ -73,15 +98,18 @@ class imp_cookies extends Module
 
 	public function hookHeader()
 	{
+		global $cookie;
+
+		if($cookie->__isset('cookieAccepted'))
+             return;
+
 		if (version_compare(_PS_VERSION_, '1.5', '>'))
 		{
 			$this->context->controller->addCSS(($this->_path).'imp_cookies.css', 'all');
-			$this->context->controller->addJS(($this->_path).'imp_cookies.js');
 		}
 		elseif(version_compare(_PS_VERSION_, '1.4', '>'))
 		{
 			Tools::addCSS(($this->_path).'imp_cookies.css', 'all');
-			Tools::addJs(($this->_path).'imp_cookies.js');
 		}
 		else return;
 	}
@@ -99,7 +127,14 @@ class imp_cookies extends Module
     		$this->_html .= $this->displayConfirmation($this->l('Success'));
     	}
 
-    	$this->_html .= '<script type="text/javascript" src="../js/jquery/jquery-colorpicker.js"></script>';
+    	if (version_compare(_PS_VERSION_, '1.5', '>'))
+		{
+    		$this->_html .= '<script type="text/javascript" src="../js/jquery/plugins/jquery.colorpicker.js"></script>';
+    	}
+    	else
+    	{
+    		$this->_html .= '<script type="text/javascript" src="../js/jquery/jquery-colorpicker.js"></script>';
+    	}
     	$this->_html .= '<h2>'.$this->displayName.'</h2>';
     	$this->_html .= '<form action="'.Tools::safeOutput($_SERVER['REQUEST_URI']).'" method="post">';
     	$this->_html .= '<fieldset>';

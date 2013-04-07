@@ -1,13 +1,13 @@
 #cookie_law_informations {
-	position: fixed;
-	width: 100%;
-	left: 0; top: 0;
-	text-align: left;
-	padding: 15px 0 15px 50px;
-	z-index: 999;
+    text-align: left;
+    padding: 15px 0 15px 50px;
 }
 
 #cookie_law_informations a {
-	display: inline-block;
-	margin: 0 0 0 20px;
+    display: inline-block;
+    margin: 0 0 0 20px;
+}
+
+#cookie_law_informations p {
+	padding: 0;
 }
