@@ -1,13 +1,4 @@
-#cookie_law_informations {
-    text-align: left;
-    padding: 15px 0 15px 50px;
-}
-
 #cookie_law_informations a {
     display: inline-block;
     margin: 0 0 0 20px;
-}
-
-#cookie_law_informations p {
-	padding: 0;
 }

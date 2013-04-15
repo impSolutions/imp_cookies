@@ -1,8 +1,8 @@
 <?php
 /**
 	@author: Krystian Podemski, impSolutions.pl
-	@release: 03.2013
-	@version: 1.1.0
+	@release: 04.2013
+	@version: 1.3.0
 	@desc: UE cookies restrictions? No problem now
 **/
 if (!defined('_PS_VERSION_'))
@@ -19,7 +19,7 @@ class imp_cookies extends Module
 		else
 			$this->tab = 'impSolutions';
 
-		$this->version = '1.2.0';
+		$this->version = '1.3.0';
 
 		if (version_compare(_PS_VERSION_, '1.4', '>'))
 			$this->author = 'impSolutions.pl';
@@ -37,6 +37,13 @@ class imp_cookies extends Module
 			OR !$this->registerHook('header')
 			OR !Configuration::updateValue('COOKIE_LAW_CMS', '1')
 			OR !Configuration::updateValue('COOKIE_LAW_BAR_BG', '#333333')
+			OR !Configuration::updateValue('COOKIE_LAW_BAR_OPACITY', '0.8')
+			OR !Configuration::updateValue('COOKIE_LAW_BAR_POSITION', 'top')
+			OR !Configuration::updateValue('COOKIE_LAW_BAR_WIDTH', '60%')
+			OR !Configuration::updateValue('COOKIE_LAW_BAR_PADDING', '20px')
+			OR !Configuration::updateValue('COOKIE_LAW_BAR_RADIUS', '10px')
+			OR !Configuration::updateValue('COOKIE_LAW_BAR_MARGIN', '20px 0 0 0')
+			OR !Configuration::updateValue('COOKIE_LAW_TEXT_ALIGN', 'left')
 			OR !Configuration::updateValue('COOKIE_LAW_TEXT_COLOR', '#f0f0f0'))
 			return false;
 		return true;
@@ -85,8 +92,16 @@ class imp_cookies extends Module
 		$smarty->assign(
 			array(
 				'page' => Configuration::get('COOKIE_LAW_CMS'),
-				'bg' => Configuration::get('COOKIE_LAW_BAR_BG'),
+				'bg_rgb' => self::hex2rgb(Configuration::get('COOKIE_LAW_BAR_BG')),
+				'bg' => str_replace('#','',Configuration::get('COOKIE_LAW_BAR_BG')),
+				'position' => Configuration::get('COOKIE_LAW_BAR_POSITION'),
+				'opacity' => Configuration::get('COOKIE_LAW_BAR_OPACITY'),
+				'width' => Configuration::get('COOKIE_LAW_BAR_WIDTH'),
+				'padding' => Configuration::get('COOKIE_LAW_BAR_PADDING'),
+				'radius' => Configuration::get('COOKIE_LAW_BAR_RADIUS'),
+				'margin' => Configuration::get('COOKIE_LAW_BAR_MARGIN'),
 				'color' => Configuration::get('COOKIE_LAW_TEXT_COLOR'),
+				'text_align' => Configuration::get('COOKIE_LAW_TEXT_ALIGN'),
 			));
 
 
@@ -112,6 +127,23 @@ class imp_cookies extends Module
 			Tools::addCSS(($this->_path).'imp_cookies.css', 'all');
 		}
 		else return;
+	}
+
+	public static function hex2rgb($hex) {
+	   $hex = str_replace("#", "", $hex);
+
+	   if(strlen($hex) == 3) {
+	      $r = hexdec(substr($hex,0,1).substr($hex,0,1));
+	      $g = hexdec(substr($hex,1,1).substr($hex,1,1));
+	      $b = hexdec(substr($hex,2,1).substr($hex,2,1));
+	   } else {
+	      $r = hexdec(substr($hex,0,2));
+	      $g = hexdec(substr($hex,2,2));
+	      $b = hexdec(substr($hex,4,2));
+	   }
+	   $rgb = array($r, $g, $b);
+	   //return implode(",", $rgb); // returns the rgb values separated by commas
+	   return $rgb; // returns an array with the rgb values
 	}
       
     public function getContent()
@@ -152,11 +184,58 @@ class imp_cookies extends Module
 
 		# background
 		$this->_html .= '<label>'.$this->l('Background color').'</label><div class="margin-form">';
-		$this->_html .= '<input type="color" name="COOKIE_LAW_BAR_BG" data-hex="true" class="color mColorPickerInput" value="'.Configuration::get('COOKIE_LAW_BAR_BG').'" /></div>';
+		$this->_html .= '<input type="color" name="COOKIE_LAW_BAR_BG" data-hex="true" class="color mColorPickerInput" value="'.Configuration::get('COOKIE_LAW_BAR_BG').'" /></div><div class="clear"></div>';
 
 		# text color
 		$this->_html .= '<label>'.$this->l('Text color').'</label><div class="margin-form">';
-		$this->_html .= '<input type="color" name="COOKIE_LAW_TEXT_COLOR" data-hex="true" class="color mColorPickerInput" value="'.Configuration::get('COOKIE_LAW_TEXT_COLOR').'" /></div>';
+		$this->_html .= '<input type="color" name="COOKIE_LAW_TEXT_COLOR" data-hex="true" class="color mColorPickerInput" value="'.Configuration::get('COOKIE_LAW_TEXT_COLOR').'" /></div><div class="clear"></div>';
+
+		# opacity
+		$this->_html .= '<label>'.$this->l('Bar opacity').'</label><div class="margin-form">';
+		$this->_html .= '<input type="text" name="COOKIE_LAW_BAR_OPACITY" value="'.Configuration::get('COOKIE_LAW_BAR_OPACITY').'" />
+		<p style="clear:both;" class="preference_description">'.$this->l('from 0.1 to 1').'</p>
+		</div><div class="clear"></div>';
+
+		# width
+		$this->_html .= '<label>'.$this->l('Bar width').'</label><div class="margin-form">';
+		$this->_html .= '<input type="text" name="COOKIE_LAW_BAR_WIDTH" value="'.Configuration::get('COOKIE_LAW_BAR_WIDTH').'" />
+		<p style="clear:both;" class="preference_description">'.$this->l('in "%" or "px"').'</p>
+		</div><div class="clear"></div>';
+
+		# position
+		$this->_html .= '<label>'.$this->l('Bar position').'</label><div class="margin-form">';
+		$this->_html .= '<select name="COOKIE_LAW_BAR_POSITION"">
+							<option value="top" '.(Configuration::get('COOKIE_LAW_BAR_POSITION') == 'top' ? 'selected' : '').'>'.$this->l('top of page').'</option>
+							<option value="bottom" '.(Configuration::get('COOKIE_LAW_BAR_POSITION') == 'bottom' ? 'selected' : '').'>'.$this->l('bottom of page').'</option>
+						</select>
+						</div><div class="clear"></div>';
+
+		# padding
+		$this->_html .= '<label>'.$this->l('Bar padding').'</label><div class="margin-form">';
+		$this->_html .= '<input type="text" name="COOKIE_LAW_BAR_PADDING" value="'.Configuration::get('COOKIE_LAW_BAR_PADDING').'" />
+		<p style="clear:both;" class="preference_description">'.$this->l('spacing within the bar, in "px"').'</p>
+		</div><div class="clear"></div>';
+
+		# radius
+		$this->_html .= '<label>'.$this->l('Bar border radius').'</label><div class="margin-form">';
+		$this->_html .= '<input type="text" name="COOKIE_LAW_BAR_RADIUS" value="'.Configuration::get('COOKIE_LAW_BAR_RADIUS').'" />
+		<p style="clear:both;" class="preference_description">'.$this->l('bar rounding, in "px", higher value = more rounded').'</p>
+		</div><div class="clear"></div>';
+
+		# margins
+		$this->_html .= '<label>'.$this->l('Bar margins').'</label><div class="margin-form">';
+		$this->_html .= '<input type="text" name="COOKIE_LAW_BAR_MARGIN" value="'.Configuration::get('COOKIE_LAW_BAR_MARGIN').'" />
+		<p style="clear:both;" class="preference_description">'.$this->l('margins, in "px": top right bottom left, for eg. 20px 0 20px 0').'</p>
+		</div><div class="clear"></div>';
+
+		# text align
+		$this->_html .= '<label>'.$this->l('Text align').'</label><div class="margin-form">';
+		$this->_html .= '<select name="COOKIE_LAW_TEXT_ALIGN"">
+							<option value="left" '.(Configuration::get('COOKIE_LAW_TEXT_ALIGN') == 'left' ? 'selected' : '').'>'.$this->l('left').'</option>
+							<option value="center" '.(Configuration::get('COOKIE_LAW_TEXT_ALIGN') == 'center' ? 'selected' : '').'>'.$this->l('center').'</option>
+							<option value="right" '.(Configuration::get('COOKIE_LAW_TEXT_ALIGN') == 'right' ? 'selected' : '').'>'.$this->l('right').'</option>
+						</select>
+						</div><div class="clear"></div>';
 
 		$this->_html .= '<div class="margin-form">';
 		$this->_html .= '<input type="submit" value="'.$this->l('Save').'" name="submitSettings" class="button">';

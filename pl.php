@@ -2,6 +2,9 @@
 
 global $_MODULE;
 $_MODULE = array();
+$_MODULE['<{imp_cookies}prestashop>imp_cookies-older_51c3920bf7e727ec6919684704030a83'] = 'Ta strona używa cookies';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies-older_f76722211e4724e5686d1bf1bcebbbdd'] = 'Rozumiem';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies-older_7d5a27f1b53dc519eac7bb288f664892'] = 'Więcej informacji';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_6f085db52ce3b7fcaa74e69191b73316'] = 'Cookies - informacje prawne';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_8e2922e12f108f0ad084dffca0a0dcf1'] = 'Zapytaj swojego klienta czy akceptuje cookies';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_505a83f220c02df2f85c3810cd9ceb38'] = 'Zapisano';
@@ -9,6 +12,23 @@ $_MODULE['<{imp_cookies}prestashop>imp_cookies_f4f70727dc34561dfde1a3c529b6205c'
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_2589e95edc88ca697a496faec730ec7e'] = 'Strona dla linku \"więcej informacji\"';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_368d9ac76af05f714092bc808a426bfc'] = 'Kolor tła';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_5f111ae4c490902059da2004cbc8b424'] = 'Kolor tekstu';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_d23d825cf3ed4d23b61586c0e6334815'] = 'Przezroczystość paska';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_f6eecde1528a48773e3b7af69db1447f'] = 'od 0.1 do 1';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_8dbffc9b2355846a286505bfd1cba33d'] = 'Szerokość paska';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_8588977a4fd94cc5b96ec29c112e2e31'] = 'w \"%\" albo \"px\"';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_218d5fedf7eac0c4f6f3bc0422f2c919'] = 'Pozycja paska';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_4696d19e974756d774e420f88bc868f2'] = 'góra strony';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_e7980fddf41a86fe4f6557ecc59c3866'] = 'dół strony';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_8a8ada7e7cc13b47c047f226d1e08926'] = 'Odstępy w pasku';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_2f9ae8868d0b82bd20c7a247ff2d3b4c'] = 'odstępy wewnątrz paska (góra prawo dół lewo), w \"px\"';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_52dbb8b29caba5a878d3e1511676eb7f'] = 'Zaokrąglenie paska';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_ebfaf9557d30e072e54bdf9d94f1e772'] = 'zaokrąglenie paska, w \"px\" albo \"%\", wyższa wartość = większe zaokrąglenie';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_e271e62784a2c9b801535a7bcaffd460'] = 'Marginesy';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_3c1067f4002e8d771dff4e208ff3ccbb'] = 'margines od paska, w \"px\", góra prawo dół lewo, np. 20px 0 20px 0';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_c22b28c5c38d219b521e476691bd7158'] = 'Pozycja tekstu';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_811882fecd5c7618d7099ebbd39ea254'] = 'lewo';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_adb115059e28d960fa8badfac5516667'] = 'środek';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_7c4f29407893c334a6cb7a87bf045c0d'] = 'prawo';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_c9cc8cce247e49bae79f15173ce97354'] = 'Zapisz';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_51c3920bf7e727ec6919684704030a83'] = 'Ta strona używa cookies';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_f76722211e4724e5686d1bf1bcebbbdd'] = 'Rozumiem';
