@@ -2,7 +2,7 @@
 /**
 	@author: Krystian Podemski, impSolutions.pl
 	@release: 04.2013
-	@version: 1.3.0
+	@version: 1.3.1
 	@desc: UE cookies restrictions? No problem now
 **/
 if (!defined('_PS_VERSION_'))
@@ -19,7 +19,7 @@ class imp_cookies extends Module
 		else
 			$this->tab = 'impSolutions';
 
-		$this->version = '1.3.0';
+		$this->version = '1.3.1';
 
 		if (version_compare(_PS_VERSION_, '1.4', '>'))
 			$this->author = 'impSolutions.pl';
