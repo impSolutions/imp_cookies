@@ -44,6 +44,7 @@ class imp_cookies extends Module
 			OR !Configuration::updateValue('COOKIE_LAW_BAR_RADIUS', '10px')
 			OR !Configuration::updateValue('COOKIE_LAW_BAR_MARGIN', '20px 0 0 0')
 			OR !Configuration::updateValue('COOKIE_LAW_TEXT_ALIGN', 'left')
+			OR !Configuration::updateValue('COOKIE_LAW_BAR_ZINDEX', '999')
 			OR !Configuration::updateValue('COOKIE_LAW_TEXT_COLOR', '#f0f0f0'))
 			return false;
 		return true;
@@ -101,6 +102,7 @@ class imp_cookies extends Module
 				'radius' => Configuration::get('COOKIE_LAW_BAR_RADIUS'),
 				'margin' => Configuration::get('COOKIE_LAW_BAR_MARGIN'),
 				'color' => Configuration::get('COOKIE_LAW_TEXT_COLOR'),
+				'zindex' => Configuration::get('COOKIE_LAW_BAR_ZINDEX'),
 				'text_align' => Configuration::get('COOKIE_LAW_TEXT_ALIGN'),
 			));
 
@@ -236,6 +238,12 @@ class imp_cookies extends Module
 							<option value="right" '.(Configuration::get('COOKIE_LAW_TEXT_ALIGN') == 'right' ? 'selected' : '').'>'.$this->l('right').'</option>
 						</select>
 						</div><div class="clear"></div>';
+
+		# margins
+		$this->_html .= '<label>'.$this->l('Z-index (advanced users)').'</label><div class="margin-form">';
+		$this->_html .= '<input type="text" name="COOKIE_LAW_BAR_ZINDEX" value="'.Configuration::get('COOKIE_LAW_BAR_ZINDEX').'" />
+		<p style="clear:both;" class="preference_description">'.$this->l('z-index for imp_cookies layer, be carefull with modify this setting').'</p>
+		</div><div class="clear"></div>';
 
 		$this->_html .= '<div class="margin-form">';
 		$this->_html .= '<input type="submit" value="'.$this->l('Save').'" name="submitSettings" class="button">';

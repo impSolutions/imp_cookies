@@ -29,6 +29,8 @@ $_MODULE['<{imp_cookies}prestashop>imp_cookies_c22b28c5c38d219b521e476691bd7158'
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_811882fecd5c7618d7099ebbd39ea254'] = 'lewo';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_adb115059e28d960fa8badfac5516667'] = 'środek';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_7c4f29407893c334a6cb7a87bf045c0d'] = 'prawo';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_7a8dadb65ef048ed26e60c420b6ada15'] = 'Z-index (dla zaawansowanych)';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_85cc88e7f420423ffb2531bfd22aa117'] = 'z-index dla warstwy imp_cookies';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_c9cc8cce247e49bae79f15173ce97354'] = 'Zapisz';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_51c3920bf7e727ec6919684704030a83'] = 'Ta strona używa cookies';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_f76722211e4724e5686d1bf1bcebbbdd'] = 'Rozumiem';
