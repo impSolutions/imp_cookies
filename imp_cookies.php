@@ -2,7 +2,7 @@
 /**
 	@author: Krystian Podemski, impSolutions.pl
 	@release: 04.2013
-	@version: 1.3.1
+	@version: 1.4.0
 	@desc: UE cookies restrictions? No problem now
 **/
 if (!defined('_PS_VERSION_'))
@@ -19,7 +19,7 @@ class imp_cookies extends Module
 		else
 			$this->tab = 'impSolutions';
 
-		$this->version = '1.3.1';
+		$this->version = '1.4.0';
 
 		if (version_compare(_PS_VERSION_, '1.4', '>'))
 			$this->author = 'impSolutions.pl';
@@ -32,6 +32,9 @@ class imp_cookies extends Module
 
 	public function install()
 	{
+		global $cookie;
+
+
 		if (!parent::install()
 			OR !$this->registerHook('top')
 			OR !$this->registerHook('header')
@@ -45,17 +48,42 @@ class imp_cookies extends Module
 			OR !Configuration::updateValue('COOKIE_LAW_BAR_MARGIN', '20px 0 0 0')
 			OR !Configuration::updateValue('COOKIE_LAW_TEXT_ALIGN', 'left')
 			OR !Configuration::updateValue('COOKIE_LAW_BAR_ZINDEX', '999')
+			OR !$this->putBarText()
 			OR !Configuration::updateValue('COOKIE_LAW_TEXT_COLOR', '#f0f0f0'))
 			return false;
 		return true;
+
 	}
 
+	public function putBarText()
+	{
+		$languages = Language::getLanguages(false);
+
+		foreach($languages as $lang)
+		{
+			if($lang['iso_code'] == 'pl') 
+				Configuration::updateValue('COOKIE_LAW_TEXT', array($lang['id_lang'] => 'Ta strona używa cookies'));
+			else
+				Configuration::updateValue('COOKIE_LAW_TEXT', array($lang['id_lang'] => 'This website uses cookies'));
+		}
+
+		return true;
+	}
 
 	public function uninstall()
 	{
 		if (!Configuration::deleteByName('COOKIE_LAW_CMS')
 			OR !Configuration::deleteByName('COOKIE_LAW_BAR_BG')
 			OR !Configuration::deleteByName('COOKIE_LAW_TEXT_COLOR')
+			OR !Configuration::deleteByName('COOKIE_LAW_BAR_OPACITY')
+			OR !Configuration::deleteByName('COOKIE_LAW_BAR_POSITION')
+			OR !Configuration::deleteByName('COOKIE_LAW_BAR_WIDTH')
+			OR !Configuration::deleteByName('COOKIE_LAW_BAR_PADDING')
+			OR !Configuration::deleteByName('COOKIE_LAW_BAR_RADIUS')
+			OR !Configuration::deleteByName('COOKIE_LAW_BAR_MARGIN')
+			OR !Configuration::deleteByName('COOKIE_LAW_TEXT_ALIGN')
+			OR !Configuration::deleteByName('COOKIE_LAW_BAR_ZINDEX')
+			OR !Configuration::deleteByName('COOKIE_LAW_TEXT')
 			OR !parent::uninstall())
 			return false;
 		return true;
@@ -103,6 +131,7 @@ class imp_cookies extends Module
 				'margin' => Configuration::get('COOKIE_LAW_BAR_MARGIN'),
 				'color' => Configuration::get('COOKIE_LAW_TEXT_COLOR'),
 				'zindex' => Configuration::get('COOKIE_LAW_BAR_ZINDEX'),
+				'text' => Configuration::get('COOKIE_LAW_TEXT', $cookie->id_lang),
 				'text_align' => Configuration::get('COOKIE_LAW_TEXT_ALIGN'),
 			));
 
@@ -150,14 +179,29 @@ class imp_cookies extends Module
       
     public function getContent()
     {
+
+    	$id_lang_default = (int)Configuration::get('PS_LANG_DEFAULT');
+		$languages = Language::getLanguages(false);
+		
     	$this->_html = '';
 
     	if(Tools::isSubmit('submitSettings'))
     	{
     		foreach($_POST as $key => $value)
     		{
-    			Configuration::updateValue($key,$value);
+    			if(preg_match('/COOKIE_LAW_TEXT_/i', $key)) continue;
+				Configuration::updateValue($key,$value);
     		}
+
+    		$message_trads = array();
+    		foreach ($_POST as $key => $value)
+				if (preg_match('/COOKIE_LAW_TEXT_/i', $key))
+				{
+					$id_lang = preg_split('/COOKIE_LAW_TEXT_/i', $key);
+					$message_trads[(int)$id_lang[1]] = $value;
+				}
+			Configuration::updateValue('COOKIE_LAW_TEXT', $message_trads, true);
+
     		$this->_html .= $this->displayConfirmation($this->l('Success'));
     	}
 
@@ -173,6 +217,20 @@ class imp_cookies extends Module
     	$this->_html .= '<form action="'.Tools::safeOutput($_SERVER['REQUEST_URI']).'" method="post">';
     	$this->_html .= '<fieldset>';
     	$this->_html .= '<legend><img src="'.$this->_path.'logo.gif" alt="" title="" />'.$this->l('Settings').'</legend>';
+
+
+    	$values = Configuration::getInt('COOKIE_LAW_TEXT');
+    	# text
+		$this->_html .= '<label>'.$this->l('Text').'</label><div class="margin-form">';
+		foreach ($languages as $language)
+		{
+			$this->_html .= '<div  id="lawtext_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $id_lang_default ? 'block' : 'none').';float: left;">';
+			$this->_html .= '<input type="text" id="COOKIE_LAW_TEXT_'.$language['id_lang'].'" name="COOKIE_LAW_TEXT_'.$language['id_lang'].'" value="'.(isset($values[$language['id_lang']]) ? $values[$language['id_lang']] : '').'" />';
+			$this->_html .= '</div>';
+		}
+		$this->_html .= $this->displayFlags($languages, $id_lang_default, 'lawtext', 'lawtext', true);
+		
+		$this->_html .= '</div><div class="clear"></div>';
 
     	#page
     	$cms_pages = CMS::listCms();

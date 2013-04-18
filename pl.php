@@ -2,13 +2,14 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{imp_cookies}prestashop>imp_cookies-older_51c3920bf7e727ec6919684704030a83'] = 'Ta strona używa cookies';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies-older_f76722211e4724e5686d1bf1bcebbbdd'] = 'Rozumiem';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies-older_7d5a27f1b53dc519eac7bb288f664892'] = 'Więcej informacji';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_6f085db52ce3b7fcaa74e69191b73316'] = 'Cookies - informacje prawne';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_8e2922e12f108f0ad084dffca0a0dcf1'] = 'Zapytaj swojego klienta czy akceptuje cookies';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_51c3920bf7e727ec6919684704030a83'] = 'Ta strona używa cookies';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_505a83f220c02df2f85c3810cd9ceb38'] = 'Zapisano';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_f4f70727dc34561dfde1a3c529b6205c'] = 'Ustawienia';
+$_MODULE['<{imp_cookies}prestashop>imp_cookies_9dffbf69ffba8bc38bc4e01abf4b1675'] = 'Tekst na belce';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_2589e95edc88ca697a496faec730ec7e'] = 'Strona dla linku \"więcej informacji\"';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_368d9ac76af05f714092bc808a426bfc'] = 'Kolor tła';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_5f111ae4c490902059da2004cbc8b424'] = 'Kolor tekstu';
@@ -32,6 +33,5 @@ $_MODULE['<{imp_cookies}prestashop>imp_cookies_7c4f29407893c334a6cb7a87bf045c0d'
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_7a8dadb65ef048ed26e60c420b6ada15'] = 'Z-index (dla zaawansowanych)';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_85cc88e7f420423ffb2531bfd22aa117'] = 'z-index dla warstwy imp_cookies';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_c9cc8cce247e49bae79f15173ce97354'] = 'Zapisz';
-$_MODULE['<{imp_cookies}prestashop>imp_cookies_51c3920bf7e727ec6919684704030a83'] = 'Ta strona używa cookies';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_f76722211e4724e5686d1bf1bcebbbdd'] = 'Rozumiem';
 $_MODULE['<{imp_cookies}prestashop>imp_cookies_7d5a27f1b53dc519eac7bb288f664892'] = 'Więcej informacji';

@@ -17,13 +17,13 @@ $(function()
 {rdelim});
 </script>
 {if version_compare($smarty.const._PS_VERSION_,'1.5','>')}
-	{assign var=cms value="{$base_dir}index.php?id_cms={$page}&controller=cms"}
+	{assign var=cookie_cms value="{$base_dir}index.php?id_cms={$page}&controller=cms"}
 {else}
-	{assign var=cms value="{$base_dir}cms.php?id_cms={$page}"}
+	{assign var=cookie_cms value="{$base_dir}cms.php?id_cms={$page}"}
 {/if}
 <div id="cookie_law_informations" style="position: fixed; {$position}: 0; left: 0; right: 0; text-align: center; z-index: {$zindex};">
     <div class="cookie-inner" style="text-align: {$text_align};display: inline-block;color: {$color}; width: {$width}; background: rgba({$bg_rgb.0},{$bg_rgb.1},{$bg_rgb.2}, {$opacity}); padding: {$padding}; border-radius: {$radius}; margin: {$margin};
     ">
-	{l s='This website uses cookies' mod='imp_cookies'} <a href="#" class="accept exclusive">{l s='Ok, I get it' mod='imp_cookies'}</a> <a href="{$cms}" class="button_large">{l s='More informations' mod='imp_cookies'}</a>
+	{$text} <a href="#" class="accept exclusive">{l s='Ok, I get it' mod='imp_cookies'}</a> <a href="{$cookie_cms}" class="button_large">{l s='More informations' mod='imp_cookies'}</a>
     </div>
 </div><!-- // cookie_law_informations -->
