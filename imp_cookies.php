@@ -225,7 +225,7 @@ class imp_cookies extends Module
 		foreach ($languages as $language)
 		{
 			$this->_html .= '<div  id="lawtext_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $id_lang_default ? 'block' : 'none').';float: left;">';
-			$this->_html .= '<input type="text" id="COOKIE_LAW_TEXT_'.$language['id_lang'].'" name="COOKIE_LAW_TEXT_'.$language['id_lang'].'" value="'.(isset($values[$language['id_lang']]) ? $values[$language['id_lang']] : '').'" />';
+			$this->_html .= '<input size="75" type="text" id="COOKIE_LAW_TEXT_'.$language['id_lang'].'" name="COOKIE_LAW_TEXT_'.$language['id_lang'].'" value="'.(isset($values[$language['id_lang']]) ? $values[$language['id_lang']] : '').'" />';
 			$this->_html .= '</div>';
 		}
 		$this->_html .= $this->displayFlags($languages, $id_lang_default, 'lawtext', 'lawtext', true);
