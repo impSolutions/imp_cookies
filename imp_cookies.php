@@ -1,8 +1,8 @@
 <?php
 /**
 	@author: Krystian Podemski, impSolutions.pl
-	@release: 04.2013
-	@version: 1.4.1
+	@release: 10.2013
+	@version: 1.4.2
 	@desc: UE cookies restrictions? No problem now
 **/
 if (!defined('_PS_VERSION_'))
@@ -14,12 +14,13 @@ class imp_cookies extends Module
 	public function __construct()
 	{
 		$this->name = 'imp_cookies';
+		$this->module_key = 'fc936e490954e81bc23903daff8d8b4b';
 		if (version_compare(_PS_VERSION_, '1.4', '>'))
 			$this->tab = 'front_office_features';
 		else
 			$this->tab = 'impSolutions';
 
-		$this->version = '1.4.1';
+		$this->version = '1.4.2';
 
 		if (version_compare(_PS_VERSION_, '1.4', '>'))
 			$this->author = 'impSolutions.pl';
