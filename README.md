@@ -1,6 +1,6 @@
 imp_cookies PrestaShop module by impSolutions
 ======
-![impSolutions](http://www.impsolutions.pl/impsolutions.png "impSolutions")
+![impSolutions](http://www.impsolutions.pl/logo.jpg "impSolutions")
 
 WHY?
 --------
